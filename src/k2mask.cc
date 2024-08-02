@@ -303,6 +303,10 @@ int main(int argc, char **argv) {
   int ch;
   int lineWidth = 72;
   int threads = 1;
+  // read from env var KRAKEN2_NUM_THREADS. if not set to 1
+  if (const char *env_threads = std::getenv("KRAKEN2_NUM_THREADS")) {
+    threads = atoi(env_threads);
+  }
   std::string infile = "/dev/stdin";
   std::string outfile = "/dev/stdout";
   std::string buffer;
